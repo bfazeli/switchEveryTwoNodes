@@ -1,6 +1,10 @@
 /*
-	Bijan Fazeli
+	Fazeli, Bijan
 
+	CS A200
+	February 4, 2017
+
+	Lab 2
 */
 
 #include "DoublyList.h"
