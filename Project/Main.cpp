@@ -5,22 +5,15 @@
 ************************************************/
 
 #include "DoublyList.h"
+#include "Testing.h"
 
 #include <iostream>
+#include <vector>
 using namespace std;
 
 int main()
 {
-	DoublyList l;
-	for (int i = 0; i < 21; i++)
-	{
-		l.insertBack(i);
-	}
-	l.print();
-	l.switchEveryTwo();
-	l.print();
-	l.reversePrint();
-
+	test_cases();
 
 	cout << endl;
 	system("Pause");
