@@ -24,7 +24,17 @@ func switchEveryTwo
 // Function definition
 void DoublyList::switchEveryTwo()
 {
-	if (count >= 2)
+	if (count == 2)
+	{
+		Node * temp = first;
+		first = last;
+		first->setNextLink(temp);
+		first->setPreviousLink(NULL);
+		last = temp;
+		last->setPreviousLink(first);
+		last->setNextLink(NULL);
+	}
+	else if (count >= 2)
 	{
 		Node * temp = first;
 		int i = 0;
@@ -40,15 +50,6 @@ void DoublyList::switchEveryTwo()
 			temp->getPreviousLink()->setPreviousLink(nullptr);
 			first = temp->getPreviousLink();
 			i = 1;
-		}
-		else if (count == 2)
-		{
-			first = last;
-			first->setNextLink(temp);
-			first->setPreviousLink(NULL);
-			last = temp;
-			last->setPreviousLink(first);
-			last->setNextLink(NULL);
 		}
 		else
 		{
