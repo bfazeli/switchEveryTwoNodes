@@ -3,7 +3,7 @@
 	Lauguico, Nicolo Marco
 
 	CS A200
-	February 4, 2017
+	February 12, 2017
 
 	Lab 2
 */
@@ -24,10 +24,9 @@ func switchEveryTwo
 // Function definition
 void DoublyList::switchEveryTwo()
 {
-	Node * temp;
+	Node * temp = first;
 	if (count == 2)
 	{
-		temp = first;
 		first = last;
 		first->setNextLink(temp);
 		first->setPreviousLink(NULL);
@@ -37,9 +36,6 @@ void DoublyList::switchEveryTwo()
 	}
 	else if (count >= 2)
 	{
-		temp = first;
-		int i = 0;
-
 		if (count % 2 != 0)		// Check to see if the list has odd elements, then bring the last node to the front
 		{
 			temp->setPreviousLink(last);
@@ -50,43 +46,39 @@ void DoublyList::switchEveryTwo()
 
 			temp->getPreviousLink()->setPreviousLink(nullptr);
 			first = temp->getPreviousLink();
-			i = 1;
 		}
-		else
+		while (temp != NULL)	// Loop through the list
 		{
-			while (temp != NULL)	// Loop through the list
+			if (temp == first)		// Swap the first two nodes
 			{
-				if (temp == first)		// Swap the first two nodes
-				{
-					temp->setPreviousLink(temp->getNextLink());
-					temp->getPreviousLink()->setPreviousLink(NULL);
-					temp->setNextLink(temp->getNextLink()->getNextLink());
-					temp->getPreviousLink()->setNextLink(temp);
-					temp->getNextLink()->setPreviousLink(temp);
+				temp->setPreviousLink(temp->getNextLink());
+				temp->getPreviousLink()->setPreviousLink(NULL);
+				temp->setNextLink(temp->getNextLink()->getNextLink());
+				temp->getPreviousLink()->setNextLink(temp);
+				temp->getNextLink()->setPreviousLink(temp);
 
-					first = temp->getPreviousLink();
-				}
-				else if (temp->getNextLink() != last)		// Swap every other node in the middle
-				{
-					temp->getPreviousLink()->setNextLink(temp->getNextLink());
-					temp->getNextLink()->setPreviousLink(temp->getPreviousLink());
-					temp->setPreviousLink(temp->getNextLink());
-					temp->setNextLink(temp->getPreviousLink()->getNextLink());
-					temp->getPreviousLink()->setNextLink(temp);
-					temp->getNextLink()->setPreviousLink(temp);
-				}
-				else		// Swap the last two nodes
-				{
-					temp->getPreviousLink()->setNextLink(temp->getNextLink());
-					temp->getNextLink()->setPreviousLink(temp->getPreviousLink());
-					temp->setPreviousLink(temp->getNextLink());
-					temp->getPreviousLink()->setNextLink(temp);
-					temp->setNextLink(nullptr);
-
-					last = temp;
-				}
-				temp = temp->getNextLink();
+				first = temp->getPreviousLink();
 			}
+			else if (temp->getNextLink() != last)		// Swap every other node in the middle
+			{
+				temp->getPreviousLink()->setNextLink(temp->getNextLink());
+				temp->getNextLink()->setPreviousLink(temp->getPreviousLink());
+				temp->setPreviousLink(temp->getNextLink());
+				temp->setNextLink(temp->getPreviousLink()->getNextLink());
+				temp->getPreviousLink()->setNextLink(temp);
+				temp->getNextLink()->setPreviousLink(temp);
+			}
+			else		// Swap the last two nodes
+			{
+				temp->getPreviousLink()->setNextLink(temp->getNextLink());
+				temp->getNextLink()->setPreviousLink(temp->getPreviousLink());
+				temp->setPreviousLink(temp->getNextLink());
+				temp->getPreviousLink()->setNextLink(temp);
+				temp->setNextLink(nullptr);
+
+				last = temp;
+			}
+			temp = temp->getNextLink();
 		}
 	}
 }
