@@ -24,9 +24,10 @@ func switchEveryTwo
 // Function definition
 void DoublyList::switchEveryTwo()
 {
+	Node * temp;
 	if (count == 2)
 	{
-		Node * temp = first;
+		temp = first;
 		first = last;
 		first->setNextLink(temp);
 		first->setPreviousLink(NULL);
@@ -36,7 +37,7 @@ void DoublyList::switchEveryTwo()
 	}
 	else if (count >= 2)
 	{
-		Node * temp = first;
+		temp = first;
 		int i = 0;
 
 		if (count % 2 != 0)		// Check to see if the list has odd elements, then bring the last node to the front
